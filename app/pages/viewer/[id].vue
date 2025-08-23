@@ -59,10 +59,7 @@ function tilesToGeoJSON(tiles: { z: number, x: number, y: number }[]): FeatureCo
 function handleZoomTo(zoom: number) {
   if (!map.value || !task.value)
     return
-  const bounds = task.value.bounds
-  const centerLng = (bounds.sw.lng + bounds.ne.lng) / 2
-  const centerLat = (bounds.sw.lat + bounds.ne.lat) / 2
-  map.value.flyTo({ center: [centerLng, centerLat] as LngLatLike, zoom, duration: 1000 })
+  map.value.flyTo({ center: map.value.getCenter(), zoom, duration: 1000 })
 }
 
 function handleFlyTo(tile: { z: number, x: number, y: number }) {
